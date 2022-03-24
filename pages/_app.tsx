@@ -4,6 +4,7 @@ import { cache } from "@emotion/css";
 import { CacheProvider, Global } from "@emotion/react";
 import { NextPage } from "next";
 import type { AppProps } from "next/app";
+import Head from "next/head";
 import { ReactElement, ReactNode } from "react";
 import tw, { css } from "twin.macro";
 
@@ -40,6 +41,20 @@ const styles = {
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   return (
     <CacheProvider value={cache}>
+      <Head>
+        <title>Twin.Macro Playground</title>
+        <meta property="og:title" content="Twin.Macro Playground" />
+        <meta
+          property="og:description"
+          content="The ✨first✨ online playground for Twin.macro. Created by @lukesmurray."
+        />
+        <meta
+          property="og:image"
+          content="https://twin-playground.vercel.app/preview.png"
+        />
+        <meta name="twitter:creator" content="@lukesmurray" />
+        <meta name="twitter:card" content="summary_large_image" />
+      </Head>
       <GlobalStyles />
       <Global styles={styles.global} />
       <div css={styles.page}>
