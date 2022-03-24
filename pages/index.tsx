@@ -97,9 +97,13 @@ function Home() {
       import React from "react";
       ~~~
 
-      ### Can I used typescript?
+      ### Can I use typescript?
 
       No, not yet.
+
+      ### Can I use hooks?
+
+      Yes! checkout the [component and hooks example](./react-component-example).
 
       ### I want to see more examples!
 
