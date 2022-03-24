@@ -1,0 +1,15 @@
+diff --git a/node_modules/twin.macro/macro.js b/node_modules/twin.macro/macro.js
+index 15e5510..898c8a4 100644
+--- a/node_modules/twin.macro/macro.js
++++ b/node_modules/twin.macro/macro.js
+@@ -3834,7 +3834,9 @@ var getConfigTailwindProperties = function (state, config) {
+   var sourceRoot = state.file.opts.sourceRoot || '.';
+   var configFile = config && config.config;
+   var configPath = path.resolve(sourceRoot, configFile || "./tailwind.config.js");
+-  var configExists = fs.existsSync(configPath);
++  // only access the file system if we are running on the server
++  // in the browser the filesystem does not exist so this would throw an error
++  var configExists = typeof window === 'undefined' ? fs.existsSync(configPath) : false;
+   var path$$1 = configExists ? require(configPath) : defaultTailwindConfig;
+   var configTailwind = resolveTailwindConfig([].concat( getAllConfigs(path$$1) ));
+   throwIf(!configTailwind, function () { return logGeneralError(("Couldn’t find the Tailwind config.\nLooked in " + config)); });

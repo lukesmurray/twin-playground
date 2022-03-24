@@ -1,0 +1,40 @@
+diff --git a/node_modules/babel-plugin-macros/dist/index.js b/node_modules/babel-plugin-macros/dist/index.js
+index 4501c0e..1d347ed 100644
+--- a/node_modules/babel-plugin-macros/dist/index.js
++++ b/node_modules/babel-plugin-macros/dist/index.js
+@@ -252,19 +252,25 @@ function applyMacros({
+ }
+ 
+ function getConfigFromFile(configName, filename) {
+-  try {
+-    const loaded = getConfigExplorer().search(filename);
+-
+-    if (loaded) {
++  // only search files for the config if we are running on the server.
++  // in the browser we can't use the filesystem.
++  if (typeof window !== 'undefined') {
++    return {};
++  } else {
++    try {
++      const loaded = getConfigExplorer().search(filename);
++
++      if (loaded) {
++        return {
++          options: loaded.config[configName],
++          path: loaded.filepath
++        };
++      }
++    } catch (e) {
+       return {
+-        options: loaded.config[configName],
+-        path: loaded.filepath
++        error: e
+       };
+     }
+-  } catch (e) {
+-    return {
+-      error: e
+-    };
+   }
+ 
+   return {};
