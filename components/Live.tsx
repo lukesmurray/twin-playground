@@ -72,7 +72,7 @@ export function Live({
         process,
       }}
       transformCode={async (code) => {
-        const DEBUG = true;
+        const DEBUG = false;
 
         // see comment above on the noInline prop.
         // if noInline is false (meaining inline=True) then we need to surround
@@ -208,6 +208,7 @@ function LiveInner({ centerExample = false }: { centerExample?: boolean }) {
       {!error && (
         <LivePreview
           css={[
+            tw`bg-white`,
             centerExample && tw`grid place-items-center`,
             css`
               padding: 10px;
