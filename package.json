@@ -64,6 +64,6 @@
     "tailwindcss": "2.2.19",
     "twin.macro": "2.8.2",
     "typescript": "4.6.2",
-    "webpack": "5.70.0"
+    "webpack": "5.76.0"
   }
 }
